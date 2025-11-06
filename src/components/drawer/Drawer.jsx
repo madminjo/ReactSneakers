@@ -5,11 +5,9 @@ import { asset } from '../../lib/asset'
 
 const Drawer = ({ onClose, onRemove, items = [] }) => {
   const { numbers = 0 } = React.useContext(AppContext)
-
-  // Сумма корзины из контекста
   const subtotal = Number(numbers) || 0
-  const tax = +(subtotal * 0.05).toFixed(2)        // 5% налог
-  const total = +(subtotal + tax).toFixed(2)       // итог к оплате
+  const tax = +(subtotal * 0.05).toFixed(2)
+  const total = +(subtotal + tax).toFixed(2)
 
   return (
     <div className="overlay">
@@ -24,7 +22,13 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
             <div className="item">
               {items.map(obj => (
                 <div key={obj.id} className="cartItem flex items-center mb-5">
-                  <img className="removeBtn" onClick={() => onRemove(obj.id)} src={asset('x.svg')} alt="Remove" />
+                  <img
+                    className="mr-5"
+                    width={70}
+                    height={70}
+                    src={asset(obj.image)}
+                    alt="sneakers"
+                  />
                   <div className="mr-5">
                     <p>{obj.titel ?? obj.title}</p>
                     <b>{obj.price} руб.</b>
@@ -32,7 +36,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                   <img
                     className="removeBtn"
                     onClick={() => onRemove(obj.id)}
-                    src="/x.svg"
+                    src={asset('x.svg')}
                     alt="Remove"
                   />
                 </div>
