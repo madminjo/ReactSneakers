@@ -2,6 +2,7 @@ import React from 'react'
 import FavoriteCard from '../../components/favorites/FavotitCart'
 import { Link } from 'react-router-dom'
 import AppContext from '../../context'
+import { asset } from '../../lib/asset'
 
 const FavoritePage = ({ onAddToFavorite, onAddToCart, onRemoveFavorites }) => {
 	const { favorites } = React.useContext(AppContext)
@@ -11,7 +12,7 @@ const FavoritePage = ({ onAddToFavorite, onAddToCart, onRemoveFavorites }) => {
 			{favorites.length ? (
 				<div className='flex px-0 py-5 gap-3 items-center'>
 					<Link to='/'>
-						<img className='mb-4' src='/hellls.svg' alt='' />
+						<img className='mb-4' src={asset('hellls.svg')} alt='' />
 					</Link>
 					<h1 className='mb-4 text-3xl font-bold'>Мои закладки</h1>
 				</div>
@@ -23,7 +24,7 @@ const FavoritePage = ({ onAddToFavorite, onAddToCart, onRemoveFavorites }) => {
 				{favorites.length === 0 ? (
 					<div>
 						<div className='flex flex-col items-center gap-3'>
-							<img width={70} height={70} src='/imagenul.svg' alt='' />
+							<img width={70} height={70} src={asset('imagenul.svg')} alt='' />
 							<h2 className='text-2xl font-bold'>Закладок нет :(</h2>
 							<p className='text-gray-600 text-sm'>
 								Вы ничего не добавляли в закладки
@@ -31,7 +32,7 @@ const FavoritePage = ({ onAddToFavorite, onAddToCart, onRemoveFavorites }) => {
 						</div>
 						<Link to='/'>
 							<button className='greenButton gap-5 flex items-center justify-center mt-8'>
-								<img src='/leftBtn.svg' alt='' /> Вернуться назад
+								<img src={asset('leftBtn.svg')} alt='' /> Вернуться назад
 							</button>
 						</Link>
 					</div>

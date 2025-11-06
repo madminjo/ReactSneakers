@@ -1,5 +1,6 @@
 import OrderCart from '../../components/orderes/OrderCart'
 import { Link } from 'react-router-dom'
+import { asset } from '../../lib/asset'
 
 const Orders = ({ orderes = [], onAddToFavorite, onAddToCart , onRemoveFavorites}) => {
 	return (
@@ -8,7 +9,7 @@ const Orders = ({ orderes = [], onAddToFavorite, onAddToCart , onRemoveFavorites
 				<div className='flex  px-0 py-5 gap-3 items-center'>
 					<Link to='/'>
 						{' '}
-						<img className='mb-4' src='/hellls.svg' alt='' />{' '}
+						<img className='mb-4' src={asset('hellls.svg')} alt='' />{' '}
 					</Link>
 					<h1 className='mb-4 text-3xl font-bold'>Мои покупки</h1>
 				</div>
@@ -20,7 +21,7 @@ const Orders = ({ orderes = [], onAddToFavorite, onAddToCart , onRemoveFavorites
 				{orderes.length === 0 ? (
 					<div>
 						<div className='flex flex-col items-center gap-3'>
-							<img width={70} height={70} src='/imageHelp.svg' alt='' />
+							<img width={70} height={70} src={asset('imageHelp.svg')} alt='' />
 							<h2 className='text-2xl font-bold'>У вас нет заказов</h2>
 							<p className='text-gray-600 text-sm'>
 								Вы нищеброд? Оформите хотя бы один заказ.
@@ -28,7 +29,7 @@ const Orders = ({ orderes = [], onAddToFavorite, onAddToCart , onRemoveFavorites
 						</div>
 						<Link to='/'>
 							<button className='greenButton gap-5 flex items-center justify-center mt-8'>
-								<img src='/leftBtn.svg' alt='' /> Вернуться назад
+								<img src={asset('leftBtn.svg')} alt='' /> Вернуться назад
 							</button>
 						</Link>
 					</div>

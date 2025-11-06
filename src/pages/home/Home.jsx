@@ -1,5 +1,5 @@
-
 import Cards from '../../components/cards/Cards'
+import { asset } from '../../lib/asset'
 
 const HomePage = ({
 	items = [],
@@ -45,12 +45,12 @@ const HomePage = ({
 				</h1>
 
 				<div className='search-block flex items-center cursor-pointer'>
-					<img src='/search.svg' alt='Search' />
+					<img src={asset('search.svg')} alt='Search' />
 					{searchValue && (
 						<img
 							onClick={() => setSearchValue('')}
 							className='clear'
-							src='/x.svg'
+							src={asset('x.svg')}
 							alt='clear'
 						/>
 					)}

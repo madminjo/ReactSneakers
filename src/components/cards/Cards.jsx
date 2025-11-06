@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Cards.scss'
 import ContentLoader from 'react-content-loader'
+import { asset } from '../../lib/asset'
 
 const Cards = ({
 	onClickFavorit,
@@ -49,11 +50,11 @@ const Cards = ({
 				<>
 					<div className='favorite' onClick={onClickHeart}>
 						<img
-							src={isAddheart ? '/heart-color.svg' : '/heart-gray.svg'}
+							src={asset(isAddheart ? 'heart-color.svg' : 'heart-gray.svg')}
 							alt=''
 						/>
 					</div>
-					<img width={133} height={112} src={image} alt='' />
+					<img width={133} height={112} src={asset(image)} alt='' />
 					<h5>{titel}</h5>
 					<div className='flex justify-between items-center'>
 						<div className='flex flex-col'>
@@ -63,7 +64,7 @@ const Cards = ({
 						<img
 							onClick={onClickPlus}
 							width={32}
-							src={isAdded ? '/btn-chekit.svg' : '/btn-nochekit.svg'}
+							src={asset(isAdded ? 'btn-chekit.svg' : 'btn-nochekit.svg')}
 							alt=''
 						/>
 					</div>

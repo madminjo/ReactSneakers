@@ -1,6 +1,7 @@
 import React from 'react'
 import './Drawer.scss'
 import AppContext from '../../context'
+import { asset } from '../../lib/asset'
 
 const Drawer = ({ onClose, onRemove, items = [] }) => {
   const { numbers = 0 } = React.useContext(AppContext)
@@ -15,7 +16,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
       <div className="drawer">
         <h2 className="mb-8 flex items-center justify-between">
           Корзина{' '}
-          <img onClick={onClose} className="cursor-pointer" src="/x.svg" alt="Remove" />
+          <img onClick={onClose} className="cursor-pointer" src={asset('x.svg')} alt="Remove" />
         </h2>
 
         {items.length > 0 ? (
@@ -23,7 +24,7 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
             <div className="item">
               {items.map(obj => (
                 <div key={obj.id} className="cartItem flex items-center mb-5">
-                  <img className="mr-5" width={70} height={70} src={obj.image} alt="sneakers" />
+                  <img className="removeBtn" onClick={() => onRemove(obj.id)} src={asset('x.svg')} alt="Remove" />
                   <div className="mr-5">
                     <p>{obj.titel ?? obj.title}</p>
                     <b>{obj.price} руб.</b>
@@ -57,21 +58,21 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                 </li>
               </ul>
               <button className="greenButton flex items-center justify-center">
-                Оформить заказ <img src="/left.svg" alt="" />
+                Оформить заказ <img src={asset('left.svg')} alt="" />
               </button>
             </div>
           </div>
         ) : (
           <div className="carzin items-center justify-center flex flex-col gap-7">
             <div className="items-center justify-center flex flex-col gap-2">
-              <img width={120} height={120} src="/carzin.svg" alt="" />
+              <img width={120} height={120} src={asset('carzin.svg')} alt="" />
               <h3 className="text-2xl font-bold">Корзина пустая</h3>
               <p className="flex items-center text-center w-[228] text-gray-600">
                 Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
               </p>
             </div>
             <button onClick={onClose} className="greenButton flex items-center justify-center">
-              <img src="/leftBtn.svg" alt="" /> Вернуться назад
+              <img src={asset('leftBtn.svg')} alt="" /> Вернуться назад
             </button>
           </div>
         )}
