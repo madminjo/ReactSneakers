@@ -1,0 +1,70 @@
+.notfound-page {
+	position: fixed; // чтобы занять весь экран
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	color: #111;
+	text-align: center;
+	z-index: 9999; // поверх всего контента
+
+	.dark & {
+		background: #0f172a;
+		color: #fff;
+	}
+}
+
+.notfound-content {
+	max-width: 500px;
+	padding: 20px;
+}
+
+.code {
+	font-size: 5rem;
+	font-weight: 700;
+	color: #6366f1;
+}
+
+h1 {
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+.message {
+	margin-top: 10px;
+	color: #6b7280;
+}
+
+.buttons {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.home-btn {
+	background: #6366f1;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-weight: 600;
+	text-decoration: none;
+
+	&:hover {
+		background: #4f46e5;
+	}
+}
+
+.support-btn {
+	color: #111;
+	font-weight: 600;
+	text-decoration: none;
+
+	.dark & {
+		color: white;
+	}
+}

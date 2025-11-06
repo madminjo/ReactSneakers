@@ -9,6 +9,7 @@ import HomePage from './pages/home/Home'
 import FavoritePage from './pages/favorites/Favorites'
 import OrdersPage from './pages/orders/Orders'
 import AppContext from './context'
+import NotFound from './pages/notFound/NotFound'
 
 const App = () => {
 	const [cartOpened, setCartOpened] = useState(false)
@@ -126,6 +127,7 @@ useEffect(() => {
 				<Header onClickCart={() => setCartOpened(true)} />
 
 				<Routes>
+					<Route path='*' element={<NotFound />} />
 					<Route
 						path='/'
 						element={
