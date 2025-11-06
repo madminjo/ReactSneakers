@@ -1,5 +1,6 @@
+
 .notfound-page {
-	position: fixed; // чтобы занять весь экран
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
@@ -10,8 +11,7 @@
 	background: #fff;
 	color: #111;
 	text-align: center;
-	z-index: 9999; // поверх всего контента
-
+	z-index: 9999;
 	.dark & {
 		background: #0f172a;
 		color: #fff;
@@ -22,23 +22,31 @@
 	max-width: 500px;
 	padding: 20px;
 }
-
 .code {
-	font-size: 5rem;
+	font-size: 4rem;
 	font-weight: 700;
 	color: #6366f1;
 }
+@media (min-width: 640px) {
+	.code {
+		font-size: 5rem;
+	}
+}
 
 h1 {
-	font-size: 2rem;
+	font-size: 1.5rem;
 	margin-top: 10px;
+}
+@media (min-width: 640px) {
+	h1 {
+		font-size: 2rem;
+	}
 }
 
 .message {
 	margin-top: 10px;
 	color: #6b7280;
 }
-
 .buttons {
 	margin-top: 30px;
 	display: flex;
@@ -48,23 +56,21 @@ h1 {
 
 .home-btn {
 	background: #6366f1;
-	color: white;
+	color: #fff;
 	padding: 10px 20px;
 	border-radius: 8px;
 	font-weight: 600;
 	text-decoration: none;
-
-	&:hover {
-		background: #4f46e5;
-	}
+}
+.home-btn:hover {
+	background: #4f46e5;
 }
 
 .support-btn {
 	color: #111;
 	font-weight: 600;
 	text-decoration: none;
-
-	.dark & {
-		color: white;
-	}
+}
+.dark .support-btn {
+	color: #fff;
 }

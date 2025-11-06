@@ -17,11 +17,8 @@ const HomePage = ({
 				.includes(searchValue.toLowerCase())
 		)
 
-		if (isLoading) {
-			return [...Array(10)].map((_, index) => (
-				<Cards key={index} loading={true} />
-			))
-		}
+		if (isLoading)
+			return [...Array(10)].map((_, index) => <Cards key={index} loading />)
 
 		return filteredItems.map(it => (
 			<Cards
@@ -32,19 +29,17 @@ const HomePage = ({
 				image={it.image}
 				onClickFavorit={() => onAddToFavorite(it)}
 				onClickPluss={() => onAddToCart(it)}
-				loading={false}
 			/>
 		))
 	}
 
 	return (
-		<div className='content p-8'>
-			<div className='flex items-center justify-between px-0 py-5'>
-				<h1 className='mb-4 text-3xl font-bold'>
+		<div className='content px-3 sm:px-6 py-6'>
+			<div className='flex items-center justify-between gap-3 py-3 flex-wrap'>
+				<h1 className='text-2xl sm:text-3xl font-bold'>
 					{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}
 				</h1>
-
-				<div className='search-block flex items-center cursor-pointer'>
+				<div className='search-block flex items-center cursor-pointer w-full sm:w-auto'>
 					<img src={asset('search.svg')} alt='Search' />
 					{searchValue && (
 						<img
@@ -59,11 +54,14 @@ const HomePage = ({
 						value={searchValue}
 						type='text'
 						placeholder='Поиск...'
+						className='w-full sm:w-[200px]'
 					/>
 				</div>
 			</div>
 
-			<div className='sneakers'>{renderItems()}</div>
+			<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5'>
+				{renderItems()}
+			</div>
 		</div>
 	)
 }

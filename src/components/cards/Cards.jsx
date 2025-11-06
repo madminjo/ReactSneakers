@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './Cards.scss'
 import ContentLoader from 'react-content-loader'
 import { asset } from '../../lib/asset'
+import './Cards.scss'
 
 const Cards = ({
 	onClickFavorit,
@@ -26,7 +26,7 @@ const Cards = ({
 	}
 
 	return (
-		<div className='card'>
+		<div className='card w-full'>
 			{loading ? (
 				<ContentLoader
 					speed={2}
@@ -35,10 +35,7 @@ const Cards = ({
 					viewBox='0 0 160 250'
 					backgroundColor='#f3f3f3'
 					foregroundColor='#ecebeb'
-					style={{
-						display: 'block',
-						margin: '0 auto',
-					}}
+					style={{ display: 'block', margin: '0 auto' }}
 				>
 					<rect x='0' y='0' rx='10' ry='10' width='160' height='150' />
 					<rect x='10' y='165' rx='3' ry='3' width='140' height='15' />
@@ -48,13 +45,23 @@ const Cards = ({
 				</ContentLoader>
 			) : (
 				<>
-					<div className='favorite' onClick={onClickHeart}>
+					<button
+						className='favorite'
+						onClick={onClickHeart}
+						aria-label='Избранное'
+					>
 						<img
 							src={asset(isAddheart ? 'heart-color.svg' : 'heart-gray.svg')}
 							alt=''
 						/>
-					</div>
-					<img width={133} height={112} src={asset(image)} alt='' />
+					</button>
+					<img
+						className='mx-auto'
+						width={133}
+						height={112}
+						src={asset(image)}
+						alt=''
+					/>
 					<h5>{titel}</h5>
 					<div className='flex justify-between items-center'>
 						<div className='flex flex-col'>
@@ -65,7 +72,8 @@ const Cards = ({
 							onClick={onClickPlus}
 							width={32}
 							src={asset(isAdded ? 'btn-chekit.svg' : 'btn-nochekit.svg')}
-							alt=''
+							alt={isAdded ? 'В корзине' : 'Добавить'}
+							style={{ cursor: 'pointer' }}
 						/>
 					</div>
 				</>

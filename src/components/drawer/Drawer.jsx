@@ -18,8 +18,8 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
         </h2>
 
         {items.length > 0 ? (
-          <div>
-            <div className="item">
+          <div className="flex-1 flex flex-col">
+            <div className="item flex-1 overflow-auto pr-1">
               {items.map(obj => (
                 <div key={obj.id} className="cartItem flex items-center mb-5">
                   <img className="mr-5" width={70} height={70} src={asset(obj.image)} alt="sneakers" />
@@ -27,14 +27,14 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
                     <p>{obj.titel ?? obj.title}</p>
                     <b>{obj.price} руб.</b>
                   </div>
-                  <button type="button" className="removeBtn" onClick={() => onRemove(obj.id)} aria-label="Удалить из корзины">
+                  <button type="button" className="removeBtn ml-auto" onClick={() => onRemove(obj.id)} aria-label="Удалить из корзины">
                     <img src={asset('x.svg')} alt="" />
                   </button>
                 </div>
               ))}
             </div>
 
-            <div className="cartTotlalBlock">
+            <div className="cartTotlalBlock mt-2">
               <ul>
                 <li className="flex">
                   <span>Итог:</span>
@@ -62,11 +62,11 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
             <div className="items-center justify-center flex flex-col gap-2">
               <img width={120} height={120} src={asset('carzin.svg')} alt="" />
               <h3 className="text-2xl font-bold">Корзина пустая</h3>
-              <p className="flex items-center text-center w-[228] text-gray-600">
+              <p className="flex items-center text-center w-[228px] text-gray-600">
                 Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
               </p>
             </div>
-            <button onClick={onClose} className="greenButton flex items-center justify-center">
+            <button onClick={onClose} className="greenButton flex items-center justify-center gap-2">
               <img src={asset('leftBtn.svg')} alt="" /> Вернуться назад
             </button>
           </div>
