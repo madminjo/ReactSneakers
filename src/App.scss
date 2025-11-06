@@ -1,0 +1,154 @@
+@use 'sass:color';
+
+.wrapper {
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin: 50px auto;
+}
+
+.button {
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.sneakers {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-block {
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 0 15px;
+  position: relative;
+  .clear {
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 13px;
+    width: 200px;
+  }
+}
+
+.item {
+  flex: 1;
+  overflow: auto;
+  margin-bottom: 40px;
+}
+
+
+.cartTotlalBlock {
+  ul {
+    margin-bottom: 40px !important;
+
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      div {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+  }
+
+  .greenButton {
+    position: relative;
+
+    &:hover {
+      img {
+        transform: translateX(10px);
+      }
+    }
+
+    img {
+      position: absolute;
+      right: 40px;
+      top: 20px;
+      transition: transform 0.42s ease-in-out;
+    }
+  }
+}
+
+.greenButton {
+  width: 100%;
+  height: 55px;
+  background: #9dd558;
+  border-radius: 18px;
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: background 0.42s ease-in-out; 
+  cursor: pointer;
+
+  svg {
+    margin-left: 20px;
+  }
+
+
+  &:hover {
+    background: color.adjust(#9dd558, $lightness: 5%);
+  }
+
+
+  &:active {
+    background: color.adjust(#9dd558, $lightness: -5%);
+  }
+}
+
+.cartItem {
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  padding: 15px;
+  transition: transform 0.42s ease-in-out, box-shadow 0.42s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  will-change: transform;
+
+  &:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  b {
+    font-size: 12px;
+  }
+
+  .removeBtn {
+    opacity: 0.4;
+    transition: opacity 0.42s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
