@@ -10,11 +10,11 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
   const total = +(subtotal + tax).toFixed(2)
 
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className="overlay" onClick={onClose}>
+      <div className="drawer" onClick={e => e.stopPropagation()}>
         <h2 className="mb-8 flex items-center justify-between">
-          Корзина{' '}
-          <img onClick={onClose} className="cursor-pointer" src={asset('x.svg')} alt="Remove" />
+          Корзина
+          <img onClick={onClose} className="cursor-pointer" src={asset('x.svg')} alt="" />
         </h2>
 
         {items.length > 0 ? (
@@ -22,23 +22,14 @@ const Drawer = ({ onClose, onRemove, items = [] }) => {
             <div className="item">
               {items.map(obj => (
                 <div key={obj.id} className="cartItem flex items-center mb-5">
-                  <img
-                    className="mr-5"
-                    width={70}
-                    height={70}
-                    src={asset(obj.image)}
-                    alt="sneakers"
-                  />
+                  <img className="mr-5" width={70} height={70} src={asset(obj.image)} alt="sneakers" />
                   <div className="mr-5">
                     <p>{obj.titel ?? obj.title}</p>
                     <b>{obj.price} руб.</b>
                   </div>
-                  <img
-                    className="removeBtn"
-                    onClick={() => onRemove(obj.id)}
-                    src={asset('x.svg')}
-                    alt="Remove"
-                  />
+                  <button type="button" className="removeBtn" onClick={() => onRemove(obj.id)} aria-label="Удалить из корзины">
+                    <img src={asset('x.svg')} alt="" />
+                  </button>
                 </div>
               ))}
             </div>
