@@ -1,62 +1,55 @@
-import React, { useState } from 'react'
+import OrderCart from '../../components/orderes/OrderCart'
+import { Link } from 'react-router-dom'
 import { asset } from '../../lib/asset'
-import './Cards.scss'
 
-const OrderCart = ({
-	id,
-	title,
-	price,
-	image,
-	onToggleFavorite,
-	onAddToCart,
-	onRemoveFavorites,
-}) => {
-	const [isAdded, setIsAdded] = useState(false)
-	const [isHeart, setIsHeart] = useState(true)
-
-	const handleAddToCart = () => {
-		setIsAdded(v => !v)
-		onAddToCart?.({ id, title, price, image })
-	}
-
-	const handleToggleFavorite = () => {
-		const next = !isHeart
-		setIsHeart(next)
-		if (!next) onRemoveFavorites?.(id)
-		onToggleFavorite?.({ id, title, price, image })
-	}
-
+const Orders = ({ orderes = [], onAddToFavorite, onAddToCart , onRemoveFavorites}) => {
 	return (
-		<div className='card'>
-			<button
-				className='favorite'
-				onClick={handleToggleFavorite}
-				title='Убрать из избранного'
-			>
-				<img
-					src={asset(isHeart ? 'heart-color.svg' : 'heart-gray.svg')}
-					alt='favorite'
-				/>
-			</button>
-
-			<img width={133} height={112} src={asset(image)} alt={title} />
-			<h5>{title}</h5>
-
-			<div className='flex justify-between items-center'>
-				<div className='flex flex-col'>
-					<span>Цена:</span>
-					<b>{price} руб.</b>
+		<div className='content p-8'>
+			{orderes.length ? (
+				<div className='flex  px-0 py-5 gap-3 items-center'>
+					<Link to='/'>
+						{' '}
+						<img className='mb-4' src={asset('hellls.svg')} alt='' />{' '}
+					</Link>
+					<h1 className='mb-4 text-3xl font-bold'>Мои покупки</h1>
 				</div>
-				<img
-					onClick={handleAddToCart}
-					width={32}
-					src={asset(isAdded ? 'btn-chekit.svg' : 'btn-nochekit.svg')}
-					alt={isAdded ? 'В корзине' : 'Добавить'}
-					style={{ cursor: 'pointer' }}
-				/>
+			) : (
+				''
+			)}
+
+			<div className='sneakers flex flex-wrap gap-5'>
+				{orderes.length === 0 ? (
+					<div>
+						<div className='flex flex-col items-center gap-3'>
+							<img width={70} height={70} src={asset('imageHelp.svg')} alt='' />
+							<h2 className='text-2xl font-bold'>У вас нет заказов</h2>
+							<p className='text-gray-600 text-sm'>
+								Вы нищеброд? Оформите хотя бы один заказ.
+							</p>
+						</div>
+						<Link to='/'>
+							<button className='greenButton gap-5 flex items-center justify-center mt-8'>
+								<img src={asset('leftBtn.svg')} alt='' /> Вернуться назад
+							</button>
+						</Link>
+					</div>
+				) : (
+					orderes.map(it => (
+						<OrderCart
+							key={it.id}
+							id={it.id}
+							title={it.title ?? it.titel}
+							price={it.price}
+							image={it.image}
+							onToggleFavorite={() => onAddToFavorite(it)}
+							onAddToCart={() => onAddToCart(it)}
+							onRemoveFavorites={() => onRemoveFavorites(it.id)}
+						/>
+					))
+				)}
 			</div>
 		</div>
 	)
 }
 
-export default OrderCart
+export default Orders

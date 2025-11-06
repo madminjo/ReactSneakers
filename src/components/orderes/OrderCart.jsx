@@ -1,28 +1,48 @@
 import { useState } from 'react'
+import { asset } from '../../lib/asset'
 import './Cards.scss'
 
-const FavoriteCard = ({ id, title, price, image, onToggleFavorite, onAddToCart, onRemoveFavorites }) => {
+const FavoriteCard = ({
+  id,
+  title,
+  price,
+  image,
+  onToggleFavorite,
+  onAddToCart,
+  onRemoveFavorites,
+}) => {
   const [isAdded, setIsAdded] = useState(false)
-  const [isHeart, setIsHeart] = useState(false)
+  const [isHeart, setIsHeart] = useState(true) // стартуем "в избранном"
 
   const handleAddToCart = () => {
-    setIsAdded((v) => !v)
+    setIsAdded(v => !v)
     onAddToCart?.({ id, title, price, image })
   }
 
   const handleToggleFavorite = () => {
-    setIsHeart((v) => !v)
-    onToggleFavorite?.({ id })
-    {setIsHeart ? onRemoveFavorites(id) : null}
+    const next = !isHeart
+    setIsHeart(next)
+    if (!next) onRemoveFavorites?.(id)
+    onToggleFavorite?.({ id, title, price, image })
   }
 
   return (
     <div className="card">
-      <button className="favorite" onClick={handleToggleFavorite} title="Убрать из избранного">
-        <img src={isHeart ? '/heart-color.svg' : '/heart-gray.svg'} alt="favorite" />
+      <button
+        type="button"
+        className="favorite"
+        onClick={handleToggleFavorite}
+        aria-label="Избранное"
+      >
+        <img
+          src={asset(isHeart ? 'heart-color.svg' : 'heart-gray.svg')}
+          width={28}
+          height={28}
+          alt=""
+        />
       </button>
 
-      <img width={133} height={112} src={image} alt={title} />
+      <img width={133} height={112} src={asset(image)} alt={title} />
       <h5>{title}</h5>
 
       <div className="flex justify-between items-center">
@@ -34,7 +54,7 @@ const FavoriteCard = ({ id, title, price, image, onToggleFavorite, onAddToCart, 
         <img
           onClick={handleAddToCart}
           width={32}
-          src={isAdded ? '/btn-chekit.svg' : '/btn-nochekit.svg'}
+          src={asset(isAdded ? 'btn-chekit.svg' : 'btn-nochekit.svg')}
           alt={isAdded ? 'В корзине' : 'Добавить'}
           style={{ cursor: 'pointer' }}
         />
